@@ -58,8 +58,10 @@ class Selection_Schemes:
         P_2 = dict(Parent_2)
         del P_1['fitness']
         del P_2['fitness']
-        Crossover_Point_1 = random.randint(0,len(Parent_1))
-        Crossover_Point_2 = random.randint(0,len(Parent_2))
+        # Crossover_Point_1 = random.randint(0,len(Parent_1))
+        # Crossover_Point_2 = random.randint(0,len(Parent_2))
+        Crossover_Point_1 = 10
+        Crossover_Point_2 = 15
         print('Cross Over Points : ', Crossover_Point_1, Crossover_Point_2)
         Children = []
         while (Crossover_Point_1 == Crossover_Point_2):
@@ -69,16 +71,16 @@ class Selection_Schemes:
         Tracker = 0
         Key_List = list(P_1.keys())
         # print('P_1 and P_2 Before Before : ', P_1, P_2)
-        print(' Before P 1 : ' , P_1)
-        print(' Before P 2 : ' , P_2)
+        # print(' Before P 1 : ' , P_1)
+        # print(' Before P 2 : ' , P_2)
         for Tracker in range(0, len(P_1)):
             if Tracker >= Crossover_Point_1 and Tracker <= Crossover_Point_2:
                 Value = P_1[Key_List[Tracker]]
                 P_1[Key_List[Tracker]] = P_2[Key_List[Tracker]]
                 P_2[Key_List[Tracker]] = Value
 
-        print(' After P 1 : ', P_1)
-        print(' After P 2 : ', P_2)
+        # print(' After P 1 : ', P_1)
+        # print(' After P 2 : ', P_2)
         # print('P_1 and P_2 After : ', P_1, P_2)
         # while (P_2!= []):
         #     if P_2[Tracker] not in P_1[Crossover_Point_1:Crossover_Point_2]:
@@ -197,6 +199,29 @@ class Selection_Schemes:
         # print('RANDOMLY CHSEN X : ', x)
         return dict(x)
         
+    # def Truncation(self, Population_With_Fitness, Top_Best=5):
+    #     # print('INITIAL POPULATION WITH BEST : ' , Population_With_Fitness)
+    #     print(len(Population_With_Fitness))
+    #     Fitness_List = list([i['fitness'] for i in Population_With_Fitness])
+    #     # print()
+    #     # print('EFFING FITNESS LIST', Fitness_List)
+    #     Best_List= []
+    #     Maximum = max(Fitness_List)
+    #     Index = Fitness_List.index(Maximum)
+    #     # for i in range(0,Top_Best):
+    #     #     Minimum = max(Fitness_List)
+    #     #     Index = Fitness_List.index(Minimum)
+    #     #     Best_List.append(Population_With_Fitness[Index])
+    #     #     Fitness_List.pop(Index)
+    #     #     # print(Best_List)
+        
+    #     # Best_List = sorted(Best_List, key=lambda k:k['fitness'])
+    #     # # print('SORTED SORTED BEST ; ', Best_List) 
+    #     # # Best_List.sort(key = lambda Best_List: Best_List[:]['fitness'])
+    #     # # print('BEST LIST DAMMIT', Best_List)
+    #     # x = random.choice(Best_List)
+    #     # # print('RANDOMLY CHSEN X : ', x)
+    #     return dict(Population_With_Fitness[Index])
 
     
 

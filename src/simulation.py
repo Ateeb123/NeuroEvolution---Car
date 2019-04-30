@@ -661,9 +661,8 @@ class Game(DirectObject):
 #while True:
 # GA model
 try:
+    # weights, bias, architecture, activation = pickle.load(open('weights_workable.p','rb'))
     weights, bias, architecture, activation = pickle.load(open('weights_workable.p','rb'))
-    print(shape(weights), shape(bias), shape(architecture), activation)
-    print("MODEL LOADED", weights)
 except:
     weights, bias, architecture, activation =  ({'w%d'%i:numpy.random.rand()-0.5 for i in range(36)},{'b%d'%i:numpy.random.rand()-0.5 for i in range(10)},[3,4,4,2],'tanh')
 

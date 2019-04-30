@@ -1,0 +1,13 @@
+F = open('LetsSee.txt','w+')
+
+F.write('asd')
+F.close()
+F = open('LetsSee.txt','w+')
+F.write('aaaa')
+F.close()
+F = open('LetsSee.txt','w+')
+F.write('bbbb')
+F.close()
+F = open('LetsSee.txt','w+')
+F.write('cccc')
+F.close()

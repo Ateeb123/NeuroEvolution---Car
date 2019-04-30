@@ -90,7 +90,8 @@ class Travelling_Salesman:
         self.architecture = {}
         self.activation = {}
         self.Gen = open('Stats.txt',"w+")
-        
+        self.data = open('AllData.txt',"w+")   
+        self.every = open('Every_Generation.txt','w+')     
         # self.Population = []
 
     def __str__(self):
@@ -130,7 +131,7 @@ class Travelling_Salesman:
         Deep_Copy_Weights = dict(self.initial_weights)
         for i in range(0,self.Population_Size-1):
             for i in Deep_Copy_Weights:
-                Deep_Copy_Weights[i] = random.randint(-10,10)
+                Deep_Copy_Weights[i] = random.randint(-20,20)
             self.All_Weights.append(dict(Deep_Copy_Weights))
         # Dummy_Cities_List = self.Cities[:]
         # Citizen = []
@@ -220,8 +221,6 @@ class Travelling_Salesman:
                     #     print('FITNESSERERERER', k['fitness'])
                     # print('EFFING THEN', Parent_1['fitness'], Parent_2['fitness'])
 
-                    for i in range(0,20):
-                        print(' Parent sAME Selector : ', len(Population_With_Fitness))
                     while (Parent_2 == Parent_1):
                         # print(Parent_1 == Parent_2) 
                         Parent_2 = self.Scheme_Selector.Schemes_List[Parent_Scheme](Population_With_Fitness)
@@ -248,10 +247,11 @@ class Travelling_Salesman:
                 Temporary_List = []
                 for i in Population_With_Fitness:
                     Temporary_List.append({j:i[j] for j in i if j!='fitness'})
-
+                for i in range(0,10):
+                    print(' ')
                 Checker_Before = []
-                # for i in Population_With_Fitness:
-                #     Checker_Before.append(i['fitness'])
+                for i in Population_With_Fitness:
+                    Checker_Before.append(i['fitness'])
                 # print('Bfore : \n ',len(Checker_Before), max(Checker_Before), min(Checker_Before) ,Checker_Before)
 
                 Selected_Population = []
@@ -268,6 +268,12 @@ class Travelling_Salesman:
                         # Population_With_Fitness.pop(Axes)
                         # Temporary_List.pop(Axes)
                 Population_With_Fitness = list(Selected_Population)
+                self.data = open('AllData.txt',"w+")        
+                self.data.write(  str(Generation_Tracker) + ' ' + str(Population_With_Fitness) + '\n')
+                self.data.close()
+                self.every = open('Every_Generation.txt','w+')     
+                self.every.write(' Generation is : ' + str(Generation_Tracker) + ' ' + str(Population_With_Fitness) + '\n')
+                self.every.close()
 
                 # for i in range(0,20):
                 #     print(' Survivor Selector : ', len(Population_With_Fitness))
@@ -283,10 +289,10 @@ class Travelling_Salesman:
                 for i in Population_With_Fitness:
                     Checker_Before.append(i['fitness'])
                     print(i['fitness'])
-                print('AFTER : \n ',len(Checker_Before), max(Checker_Before), min(Checker_Before))
+                print('Same AFTER : \n ',len(Checker_Before), max(Checker_Before), min(Checker_Before), Checker_Before)
+                print('Same AFTER : \n ',len(Checker_Before), max(Checker_Before), min(Checker_Before),Checker_Before)
                 print(Generation_Tracker)
                 print(Checker_Before)
-
 
                 Long = [] 
                 for i in Population_With_Fitness:
@@ -295,7 +301,9 @@ class Travelling_Salesman:
                 X = max(Long)
                 Index = Long.index(X)
 
-                self.Gen.write(str(Population_With_Fitness[Index]) + ', Generation is ' + str(Generation_Tracker) + ' and Best is ' + str(X))
+                self.Gen = open('Stats.txt',"w+")
+                self.Gen.write(str(Population_With_Fitness[Index]) + ', Generation is ' + str(Generation_Tracker) + ' and Best is ' + str(X) + '\n')
+                self.Gen.close()
                 Best.append(max(Long))
                 print(Best[-1])
                 Average_Average = sum(Long)/len(Long)
@@ -344,7 +352,7 @@ class Travelling_Salesman:
 
 ## UnModified Parameters
 # TSP = Travelling_Salesman(30,10,50,0.3,10)
-TSP = Travelling_Salesman(10,5,50,0.3,10)
+TSP = Travelling_Salesman(60,10,100,0.2,10)
 #Modified Paramters for FSP and fSP
 # TSP = Travelling_Salesman(10,20,3000,0.3,10)
 
